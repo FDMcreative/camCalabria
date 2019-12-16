@@ -1,0 +1,17 @@
+.loginPanel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    // margin: 16px auto;
+    padding: 32px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+button {
+    width: 100%;
+    margin-top: 30px;
+}

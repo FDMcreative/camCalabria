@@ -1,0 +1,20 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="loginPanel">
+
+    <!-- USERNAME -->
+    <mat-form-field class="">
+        <input matInput type="text" placeholder="Username/Regione" ngModel #username="ngModel" name="username"
+            id="username" (ngModel)="login.username" autocomplete="off" required>
+    </mat-form-field>
+
+    <!-- PASSWORD -->
+    <mat-form-field class="">
+        <input matInput type="password" placeholder="Password" ngModel #password="ngModel" name="password" id="password"
+            (ngModel)="login.password" autocomplete="off" required>
+    </mat-form-field>
+
+    <!-- SUBMIT -->
+    <button mat-raised-button color="accent" [disabled]="!f.valid" type="submit">Login</button>
+
+    <p style="color: #f44336; font-size: .9rem" *ngIf="errorMessage">{{errorMessage}}</p>
+
+</form>

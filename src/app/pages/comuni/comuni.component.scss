@@ -1,0 +1,80 @@
+// TOP SECTION
+
+.top {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0px auto;
+
+    .left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .whiteRow {
+            margin-bottom: 20px;
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            flex-direction: column;
+            // position: absolute;
+            // top: 100px;
+            // left: 5%;
+            padding: 20px;
+            width: 90%;
+            // height: 40%;
+            background-color: white;
+            border-radius: 10px;
+        }
+    }
+
+    .right {
+        width: 50%;
+        position: relative;
+        // left: 60%;
+        top: -100px;
+    }
+}
+
+
+// TABLE SECTION
+
+.tableWrapper {
+    width: 80%;
+    margin: 0px auto 50px auto;
+    // background-color: white;
+    // border-collapse: separate;
+    // border-top-left-radius: 10px;
+    // border-top-right-radius: 10px;
+    // border-radius: 10px;
+
+    table {
+        width: 100%;
+        margin-right: 0px;
+        // background-color: white;
+        // border-collapse: separate;
+
+        thead {}
+
+        tr {
+            background-color: white;
+
+            th {}
+
+            td {
+                // border: solid 1px #000;
+            }
+        }
+    }
+}
+
+
+// ELEMENTS
+input {
+    color: black;
+}
+
+i {
+    cursor: pointer;
+}

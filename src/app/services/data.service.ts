@@ -47,6 +47,17 @@ export class DataService {
         );
     }
 
+    // GET ALL
+    protected getById(method: string, id: number): Observable<any> {
+
+        return this.httpClient.get(this.baseUrl + method + id).pipe(
+            map(res => {
+                return res;
+            }),
+            catchError(err => CrudServiceOptions.handleError(throwError(err)))
+        );
+    }
+
     /**
      * chiama la il servizio in 'POST' indicato nel param 'method' e passa il 'model' da persistere
      * @param {string} method

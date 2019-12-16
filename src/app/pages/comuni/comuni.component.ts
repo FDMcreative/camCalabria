@@ -25,7 +25,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('paginator', { static: true }) paginator: MatPaginator;
   // displayedColumns: string[] = ['select', 'id', 'name', 'file', 'action'];
   citiesTable: ComuneLista[] = [];
-  displayedColumns: string[] = ['nome', 'provincia', 'asili', 'residenzeAnziani', 'residenzeDisabili', 'file', 'action'];
+  displayedColumns: string[] = ['nome', 'provincia', 'asiliNido', 'residenzeAnziani', 'residenzeDisabili', 'file', 'action'];
   dataSource = new MatTableDataSource<ComuneLista>(this.citiesTable);
   // ---------------------- TABLE END
 
@@ -120,7 +120,8 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
     let result = this.allCities.filter(obj => {
       return obj.nome === this.cityAppoggio.value;
     });
-    this.citiesTable = this.arrayUnique(this.citiesTable.concat(result));
+    // this.citiesTable = this.arrayUnique(this.citiesTable.concat(result));
+    this.citiesTable = this.arrayUnique(result.concat(this.citiesTable));
     // console.log('AFTER citiesTable: ', this.citiesTable);
 
     this.updateTable();
@@ -156,6 +157,15 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   // Search Generico
   onSearch(cerca) {
     console.log('cerca: ', cerca);
+  }
+
+  // Check if fileUpload has been populated
+  checkFileUpload() {
+    let button = (<HTMLInputElement>document.getElementById("fileUpload"));
+    if (button.value != "") {
+      console.log("YOU HAVE A FILE");
+      button.innerHTML = 'BRAVO'
+    }
   }
 
   // --------------------- CUSTOM FUNCTIONS END

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComuneLista } from 'src/app/models/comune-lista';
 import { DataService } from 'src/app/services/data.service';
+import { ChiamateService } from 'src/app/services/chiamate.service';
 
 
 @Component({
@@ -10,12 +11,23 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ComuneComponent implements OnInit {
 
-  comune: ComuneLista;
+  comune: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private chiamateService: ChiamateService) { }
 
   ngOnInit() {
-    this.comune = this.dataService.selectedComune;
+    // this.comune = this.dataService.selectedComune;
+    console.log('COMUNE DETT');
+
+    this.chiamateService.getComuneById(1)
+      .subscribe((data: []) => {
+        console.log('data: ', data);
+        this.comune = data;
+      });
+  }
+
+  onSubmit() {
+
   }
 
 }

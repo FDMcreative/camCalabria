@@ -11,6 +11,9 @@ export class ChiamateService extends DataService {
     getAllComuni(): Observable<any> {
         return this.getAll('/comuni');
     }
+    getComuneById(id: number): Observable<any> {
+        return this.getById('/comuni/', id);
+    }
 
     // POSTs
     login(data): Observable<any> {

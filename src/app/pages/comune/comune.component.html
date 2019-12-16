@@ -6,16 +6,43 @@
         </div>
 
         <mat-card-title>Dettaglio</mat-card-title>
-        <mat-card-subtitle>nome comune: {{comune.nome}}</mat-card-subtitle>
+        <mat-card-subtitle>Comune di {{comune.nome}}</mat-card-subtitle>
 
     </mat-card-header>
 
 
     <mat-card-content>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores officiis cumque recusandae dignissimos?
-            Ratione esse ea omnis error. Quis tenetur similique, a eius nesciunt ad maxime nam beatae quam architecto!
-        </p>
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="">
+
+            <mat-form-field class="">
+                <input readonly matInput type="text" placeholder="Provincia" ngModel #provincia="ngModel"
+                    name="provincia" id="provincia" [(ngModel)]="comune.provincia" autocomplete="off" required>
+            </mat-form-field>
+
+            Asili:
+            <div *ngFor="let asilo of comune?.asiliNido">
+
+                <mat-form-field class="">
+                    <span>{{asilo.nome}}</span>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                    <span>{{asilo.indirizzo}}</span>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                    <span>{{asilo.telefono}}</span>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                    <span>{{asilo.numeroStanze}}</span>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
     </mat-card-content>
 
     <mat-card-actions>

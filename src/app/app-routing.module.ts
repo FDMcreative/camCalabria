@@ -9,9 +9,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'comuni', component: ComuniComponent, children: [
-      { path: 'comune', component: ComuneComponent }
+      // { path: ':id', component: ComuneComponent }
     ]
   },
+  { path: 'comuni/:id', component: ComuneComponent },
   { path: 'login', component: LoginComponent },
   { path: 'errore', component: ErroreComponent },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },

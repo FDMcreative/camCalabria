@@ -29,7 +29,7 @@
         cerca.errors.required: {{cerca?.errors.required}}
         <div class="whiteRow">
             <mat-form-field class="">
-                <input matInput type="text" placeholder="Cerca comune, asilo o residenza" ngModel #cerca="ngModel"
+                <input matInput type="text" placeholder="Cerca comune, asilo o struttura" ngModel #cerca="ngModel"
                     name="cerca" id="cerca" (ngModel)="cercaAppoggio" autocomplete="off" required minlength="3">
             </mat-form-field>
             <p style="color: #f44336; font-size: .9rem" *ngIf="!cerca.valid && cerca.touched">
@@ -85,10 +85,10 @@
             <td mat-cell *matCellDef="let element"> {{element.provincia}} </td>
         </ng-container>
 
-        <!-- Asili Column -->
-        <ng-container matColumnDef="asili">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>ASILI</th>
-            <td mat-cell *matCellDef="let element"> {{element.asili}} </td>
+        <!-- Asili Nido Column -->
+        <ng-container matColumnDef="asiliNido">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ASILI NIDO</th>
+            <td mat-cell *matCellDef="let element"> {{element.asiliNido}} </td>
         </ng-container>
 
         <!-- Residenze Anziani Column -->
@@ -107,19 +107,23 @@
         <ng-container matColumnDef="file">
             <th mat-header-cell *matHeaderCellDef>FILE</th>
             <td mat-cell *matCellDef="let element">
-                <input type="file">
+                <label class="fileUpload" for="fileUpload">Seleziona file</label>
+                <input type="file" id="fileUpload" accept="image/*" (change)="checkFileUpload()">
+                <!-- style="display: none" -->
             </td>
         </ng-container>
+
+
 
         <!-- Action Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>AZIONI</th>
             <td mat-cell *matCellDef="let element">
-                <i class="material-icons" [routerLink]="'/comune'">edit</i>
-                <i [ngStyle]="{'cursor': element.action === 'chevron_right' ? 'pointer' : 'default'}"
+                <i class="material-icons" [routerLink]="['/comuni', element.idComune]">edit</i>
+                <!-- <i [ngStyle]="{'cursor': element.action === 'chevron_right' ? 'pointer' : 'default'}"
                     class="material-icons" [routerLink]="element.action === 'chevron_right' ? ['/errore'] : []">
                     {{element.action}}
-                </i>
+                </i> -->
             </td>
         </ng-container>
 

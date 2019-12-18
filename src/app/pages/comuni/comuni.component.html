@@ -32,7 +32,7 @@
                 <input matInput type="text" placeholder="Cerca comune, asilo o struttura" ngModel #cerca="ngModel"
                     name="cerca" id="cerca" (ngModel)="cercaAppoggio" autocomplete="off" required minlength="3">
             </mat-form-field>
-            <p style="color: #f44336; font-size: .9rem" *ngIf="!cerca.valid && cerca.touched">
+            <p style="color: #f44336; font-size: 0.9rem" *ngIf="!cerca.valid && cerca.touched">
                 {{cerca?.errors.required}}
             </p>
             <button mat-raised-button color="accent" [disabled]="!cerca.valid" (click)="onSearch(cerca)">Cerca</button>

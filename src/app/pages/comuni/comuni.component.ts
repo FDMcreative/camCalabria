@@ -85,12 +85,14 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   // Get All Comuni
   getComuni() {
     this.chiamateService.getAllComuni()
-      .subscribe((data: []) => {
+      .subscribe((data: ComuneLista[]) => {
         this.allCities = data;
         console.log('this.allCities: ', this.allCities);
         // Transform To Array of Strings
-        this.allCitiesArray = this.allCities.map((city) => city.nome.replace(city.nome[0], city.nome[0].toUpperCase()));
-        // console.log('this.allCitiesArray: ', this.allCitiesArray);
+        this.allCitiesArray = this.allCities.map((city: ComuneLista) => {
+          return city.nome.replace(city.nome[0], city.nome[0].toUpperCase());
+        });
+        console.log('this.allCitiesArray: ', this.allCitiesArray);
         // Populate the Autocomplete
         this.autocompleteFunction();
       });

@@ -1,0 +1,50 @@
+.card {
+    max-width: 90%;
+    margin: 50px auto;
+
+    .material-icons {
+        color: darkred;
+    }
+
+    mat-card-content {
+
+        form {
+
+            .sectionTitle {
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .sectionBody {
+
+                span {
+                    margin-right: 10px;
+                    font-weight: bold;
+                }
+
+                mat-form-field {
+                    margin: 10px;
+                    width: 20%
+                }
+            }
+
+            .asiliSection {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .residenzeAnzianiSection {
+                padding: 10px;
+            }
+
+            .residenzeDisabiliSection {
+                padding: 10px;
+            }
+        }
+    }
+
+    mat-card-actions {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

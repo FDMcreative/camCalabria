@@ -8,10 +8,18 @@ import { ComuneComponent } from './pages/comune/comune.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path: 'comuni', component: ComuniComponent, children: [
-      // { path: ':id', component: ComuneComponent }
+    path: 'comuni', pathMatch: 'full', component: ComuniComponent, children: [
+      { path: ':id', component: ComuneComponent }
     ]
   },
+  // {
+  //   path: 'recipes', component: RecipesComponent, children: [
+  //     { path: '', component: RecipeStartComponent },
+  //     { path: 'new', component: RecipeEditComponent },
+  //     { path: ':id', component: RecipeDetailComponent },
+  //     { path: ':id/edit', component: RecipeEditComponent }
+  //   ]
+  // },
   { path: 'comuni/:id', component: ComuneComponent },
   { path: 'login', component: LoginComponent },
   { path: 'errore', component: ErroreComponent },

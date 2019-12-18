@@ -21,7 +21,7 @@ export class ChiamateService extends DataService {
     }
 
     // PUTs
-    modifyComune(comune: any, id: string): Observable<any> {
+    modifyComune(comune: any, id: number): Observable<any> {
         // commentato solo per Local Mock
         // return this.save('/enti/' + id, ente);
         return this.put('/comuni/', comune, id);

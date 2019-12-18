@@ -1,17 +1,43 @@
+:host {
+    // background-image: url("/assets/images/logo_regione_calabria.png");
+
+}
+
+.logo {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 100px;
+    padding: 32px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+
+    span {
+        height: 100%;
+        color: black
+    }
+
+    img {
+        height: 100%;
+    }
+}
+
 .loginPanel {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 20%;
-    // margin: 16px auto;
     padding: 32px;
     border-radius: 5px;
     background-color: whitesmoke;
     color: rgba(0, 0, 0, 0.87);
-}
 
-button {
-    width: 100%;
-    margin-top: 30px;
+    button {
+        width: 100%;
+        margin-top: 30px;
+    }
 }

@@ -6,7 +6,7 @@
         </div>
 
         <mat-card-title>Dettaglio</mat-card-title>
-        <mat-card-subtitle>Comune di {{comune.nome}}</mat-card-subtitle>
+        <mat-card-subtitle>Comune di {{comune?.nome}} in provincia di {{comune?.provincia}}</mat-card-subtitle>
 
     </mat-card-header>
 
@@ -15,30 +15,129 @@
 
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="">
 
-            <mat-form-field class="">
-                <input readonly matInput type="text" placeholder="Provincia" ngModel #provincia="ngModel"
-                    name="provincia" id="provincia" [(ngModel)]="comune.provincia" autocomplete="off" required>
-            </mat-form-field>
+            <p class="sectionTitle">Sezione Asili:</p>
+            <div class="sectionBody asiliSection">
 
-            Asili:
-            <div *ngFor="let asilo of comune?.asiliNido">
+                <div *ngFor="let asilo of comune?.asiliNido; let i = index">
 
-                <mat-form-field class="">
-                    <span>{{asilo.nome}}</span>
-                </mat-form-field>
+                    <span>{{i+1}})</span>
 
-                <mat-form-field class="">
-                    <span>{{asilo.indirizzo}}</span>
-                </mat-form-field>
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Nome dell'asilo" ngModel
+                            #asiloNome_{{i+1}}="ngModel" name="{{ 'asiloNome_' + (i+1) }}"
+                            id="{{ 'asiloNome_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].nome" autocomplete="off"
+                            required>
+                    </mat-form-field>
 
-                <mat-form-field class="">
-                    <span>{{asilo.telefono}}</span>
-                </mat-form-field>
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Indirizzo dell'asilo" ngModel
+                            #asiloIndirizzo_{{i+1}}="ngModel" name="{{ 'asiloIndirizzo_' + (i+1) }}"
+                            id="{{ 'asiloIndirizzo_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].indirizzo"
+                            autocomplete="off" required>
+                    </mat-form-field>
 
-                <mat-form-field class="">
-                    <span>{{asilo.numeroStanze}}</span>
-                </mat-form-field>
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Telefono dell'asilo" ngModel
+                            #asiloTelefono_{{i+1}}="ngModel" name="{{ 'asiloTelefono_' + (i+1) }}"
+                            id="{{ 'asiloTelefono_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].telefono"
+                            autocomplete="off" required>
+                    </mat-form-field>
 
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Numero stanze dell'asilo"
+                            ngModel #asiloNumeroStanze_{{i+1}}="ngModel" name="{{ 'asiloNumeroStanze_' + (i+1) }}"
+                            id="{{ 'asiloNumeroStanze_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].numeroStanze"
+                            autocomplete="off" required>
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <p class="sectionTitle">Sezione Residenze Anziani:</p>
+            <div class="sectionBody residenzeAnzianiSection">
+
+                <div *ngFor="let residenzaAnziani of comune?.residenzeAnziani; let i = index">
+
+                    <span>{{i+1}})</span>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Nome della residenza anziani"
+                            ngModel #residenzaAnzianiNome_{{i+1}}="ngModel" name="{{ 'residenzaAnzianiNome_' + (i+1) }}"
+                            id="{{ 'residenzaAnzianiNome_' + (i+1) }}" [(ngModel)]="comune?.residenzeAnziani[i].nome"
+                            autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Indirizzo della residenza anziani" ngModel
+                            #residenzaAnzianiIndirizzo_{{i+1}}="ngModel"
+                            name="{{ 'residenzaAnzianiIndirizzo_' + (i+1) }}"
+                            id="{{ 'residenzaAnzianiIndirizzo_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeAnziani[i].indirizzo" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Telefono della residenza anziani" ngModel
+                            #residenzaAnzianiTelefono_{{i+1}}="ngModel" name="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
+                            id="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeAnziani[i].telefono" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Numero stanze della residenza anziani" ngModel
+                            #residenzaAnzianiNumeroStanze_{{i+1}}="ngModel"
+                            name="{{ 'residenzaAnzianiNumeroStanze_' + (i+1) }}"
+                            id="{{ 'residenzaAnzianiNumeroStanze_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeAnziani[i].numeroStanze" autocomplete="off" required>
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <p class="sectionTitle">Sezione Residenze Disabili:</p>
+            <div class="sectionBody residenzeDisabiliSection">
+
+                <div *ngFor="let asilo of comune?.residenzeDisabili; let i = index">
+
+                    <span>{{i+1}})</span>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Nome della residenza disabili"
+                            ngModel #residenzaDisabiliNome_{{i+1}}="ngModel"
+                            name="{{ 'residenzaDisabiliNome_' + (i+1) }}" id="{{ 'residenzaDisabiliNome_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeDisabili[i].nome" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Indirizzo della residenza disabili" ngModel
+                            #residenzaDisabiliIndirizzo_{{i+1}}="ngModel"
+                            name="{{ 'residenzaDisabiliIndirizzo_' + (i+1) }}"
+                            id="{{ 'residenzaDisabiliIndirizzo_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeDisabili[i].indirizzo" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Telefono della residenza disabili" ngModel
+                            #residenzaDisabiliTelefono_{{i+1}}="ngModel"
+                            name="{{ 'residenzaDisabiliTelefono_' + (i+1) }}"
+                            id="{{ 'residenzaDisabiliTelefono_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeDisabili[i].telefono" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input [readonly]="!allowEdit" matInput type="text"
+                            placeholder="Numero stanze della residenza disabili" ngModel
+                            #residenzaDisabiliNumeroStanze_{{i+1}}="ngModel"
+                            name="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
+                            id="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeDisabili[i].numeroStanze" autocomplete="off" required>
+                    </mat-form-field>
+
+                </div>
             </div>
 
         </form>
@@ -46,8 +145,9 @@
     </mat-card-content>
 
     <mat-card-actions>
-        <button mat-button routerLink="/comuni">Torna indietro</button>
-        <button mat-button>Manda un report</button>
+        <button mat-button mat-raised-button color="primary" routerLink="/comuni">Torna indietro</button>
+        <button mat-button mat-raised-button color="accent" (click)="onSubmit()" *ngIf="allowEdit">Salva</button>
+        <!-- [routerLink]="['/comuni', id]" -->
     </mat-card-actions>
 
 </mat-card>

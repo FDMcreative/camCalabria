@@ -41,6 +41,8 @@ export class DataService {
 
         return this.httpClient.get(this.baseUrl + method).pipe(
             map(res => {
+                console.log('GET ALL: ', res);
+
                 return res;
             }),
             catchError(err => CrudServiceOptions.handleError(throwError(err)))
@@ -52,6 +54,7 @@ export class DataService {
 
         return this.httpClient.get(this.baseUrl + method + id).pipe(
             map(res => {
+                console.log('GET BY ID: ', res);
                 return res;
             }),
             catchError(err => CrudServiceOptions.handleError(throwError(err)))
@@ -68,7 +71,7 @@ export class DataService {
 
         return this.httpClient.post(this.baseUrl + method, model).pipe(
             map(res => {
-                // console.log('CRUD res save: ', res);
+                console.log('POST: ', res);
                 // let response;
                 // response.deserialize(res);
                 // return response.output;
@@ -82,12 +85,10 @@ export class DataService {
      * @param {string} method
      * @param {string} id
      */
-    protected put(method: string, model: any, id: string): Observable<any> {
-        return this.httpClient.put(method + id, model).pipe(
+    protected put(method: string, model: any, id: number): Observable<any> {
+        return this.httpClient.put(this.baseUrl + method + id, model).pipe(
             map(res => {
-                // let response = new Response();
-                // response.deserialize(res);
-                // return response.output;
+                console.log('PUT: ', res);
                 return res;
             }),
             catchError(err => CrudServiceOptions.handleError(throwError(err)))

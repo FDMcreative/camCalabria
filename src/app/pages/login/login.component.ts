@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
       res => {
         // console.log('res: ', res);
         if (res.correct) {
-          this.dataService.loggedUser = res.utenteLoggato;
-          console.log('FROM LOGIN - this.loggedUser: ', this.dataService.loggedUser);
+          this.chiamateService.loggedUser = res.utenteLoggato;
+          // console.log('FROM LOGIN - this.loggedUser: ', this.dataService.loggedUser);
 
           this.router.navigate(['/comuni']);
         } else {

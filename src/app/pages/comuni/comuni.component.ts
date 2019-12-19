@@ -37,6 +37,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   cercaAppoggio: string;
   filteredCitiesOptions: Observable<string[]>;
 
+  options: string[] = ['One', 'Two', 'Three'];
 
 
   constructor(private chiamateService: ChiamateService) {
@@ -80,7 +81,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.allCitiesArray.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
     // return this.allCitiesArray.filter(option => {
     //   if (option) {
     //     option.toLowerCase().includes(filterValue)

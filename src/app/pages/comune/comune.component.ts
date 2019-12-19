@@ -37,7 +37,7 @@ export class ComuneComponent implements OnInit {
           this.id = params['id'];
 
           this.chiamateService.getComuneById(this.id)
-            .subscribe((data: []) => {
+            .subscribe((data: ComuneDettaglio) => {
               // console.log('data: ', data);
               this.comune = data;
             });

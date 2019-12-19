@@ -4,7 +4,7 @@
 
   <span class="spacer"></span>
 
-  <span *ngIf="dataService.loggedUser">Benvenuto {{dataService.loggedUser?.username}}</span>
+  <span *ngIf="stagingService.loggedUser">Benvenuto {{stagingService.loggedUser.username}}</span>
   <!-- <button> -->
   <mat-icon style="cursor: pointer;" class="icon" aria-hidden="false" aria-label="user verified icon"
     routerLink="/login">person</mat-icon>

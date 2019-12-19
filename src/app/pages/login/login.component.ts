@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChiamateService } from 'src/app/services/chiamate.service';
 import { DataService } from 'src/app/services/data.service';
+import { StagingService } from 'src/app/services/staging.service';
 
 export interface Login {
   username: string;
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private chiamateService: ChiamateService,
-    private dataService: DataService
+    private staginService: StagingService
   ) { }
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
       res => {
         // console.log('res: ', res);
         if (res.correct) {
-          this.chiamateService.loggedUser = res.utenteLoggato;
+          this.staginService.loggedUser = res.utenteLoggato;
           // console.log('FROM LOGIN - this.loggedUser: ', this.dataService.loggedUser);
 
           this.router.navigate(['/comuni']);

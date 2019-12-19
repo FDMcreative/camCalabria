@@ -17,14 +17,25 @@
 
             .sectionBody {
 
-                span {
-                    margin-right: 10px;
-                    font-weight: bold;
-                }
+                .formRow {
+                    position: relative;
 
-                mat-form-field {
-                    margin: 10px;
-                    width: 20%
+                    span {
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+
+                    mat-form-field {
+                        margin: 10px;
+                        width: 20%
+                    }
+
+                    button {
+                        position: absolute;
+                        top: 50%;
+                        right: 0px;
+                        transform: translate(0%, -50%);
+                    }
                 }
             }
 

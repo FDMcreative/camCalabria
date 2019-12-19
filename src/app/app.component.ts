@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './services/data.service';
 import { LoggedUser } from './models/loggedUser';
+import { StagingService } from './services/staging.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +12,12 @@ export class AppComponent implements OnInit {
   title = 'camCalabria';
   loggedUser: LoggedUser;
 
-  constructor(public dataService: DataService) { }
+  constructor(
+    public stagingService: StagingService) { }
 
   ngOnInit() {
-    this.loggedUser = this.dataService.loggedUser;
-    // console.log('FROM APP - this.loggedUser : ', this.loggedUser);
+    this.loggedUser = this.stagingService.loggedUser;
+    console.log('FROM APP - this.loggedUser : ', this.loggedUser);
   }
 
 }

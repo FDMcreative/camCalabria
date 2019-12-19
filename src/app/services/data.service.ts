@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ComuneLista } from '../models/comune-lista';
+import { StagingService } from './staging.service';
 import { LoggedUser } from '../models/loggedUser';
 
 
@@ -11,14 +11,6 @@ import { LoggedUser } from '../models/loggedUser';
     providedIn: 'root'
 })
 export class DataService {
-
-
-
-    // ---------- VARIABILI APPOGGIO
-    public loggedUser: LoggedUser;
-    public selectedComune: ComuneLista;
-    // ---------- VARIABILI APPOGGIO END
-
 
 
     static router: Router;
@@ -39,7 +31,10 @@ export class DataService {
     // GET ALL
     protected getAll(method: string): Observable<any> {
 
-        return this.httpClient.get(this.baseUrl + method).pipe(
+        const headers = CrudServiceOptions.getHttpHeaders();
+        console.log('GET ALL SENDING this HEADER: ', headers);
+
+        return this.httpClient.get(this.baseUrl + method, { headers }).pipe(
             map(res => {
                 console.log('GET ALL: ', res);
 
@@ -52,7 +47,9 @@ export class DataService {
     // GET ALL
     protected getById(method: string, id: number): Observable<any> {
 
-        return this.httpClient.get(this.baseUrl + method + id).pipe(
+        const headers = CrudServiceOptions.getHttpHeaders();
+
+        return this.httpClient.get(this.baseUrl + method + id, { headers }).pipe(
             map(res => {
                 console.log('GET BY ID: ', res);
                 return res;
@@ -69,7 +66,9 @@ export class DataService {
     // POST
     protected post(method: string, model: any): Observable<any> {
 
-        return this.httpClient.post(this.baseUrl + method, model).pipe(
+        const headers = CrudServiceOptions.getHttpHeaders();
+
+        return this.httpClient.post(this.baseUrl + method, model, { headers }).pipe(
             map(res => {
                 console.log('POST: ', res);
                 // let response;
@@ -103,7 +102,26 @@ export class DataService {
 
 export class CrudServiceOptions {
 
-    constructor() { }
+    loggedUser: LoggedUser;
+
+    constructor(private stagingService: StagingService) {
+        this.loggedUser = this.stagingService.loggedUser;
+    }
+
+
+    /**
+     * costruisce gli header params necessari per le chiamate
+     */
+    static getHttpHeaders(): HttpHeaders {
+
+        const headers = new HttpHeaders({ 'ruolo': 'admin' });
+        headers['loggedUser'] = { 'username': 'admin1' };
+        // headers.append('content-type', 'application/json');
+        // headers.append('accept', 'application/json');
+
+        return headers;
+
+    }
 
     static handleError(error: any) {
         console.warn('Error: ', error);

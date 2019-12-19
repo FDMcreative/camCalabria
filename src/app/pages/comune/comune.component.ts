@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChiamateService } from 'src/app/services/chiamate.service';
 import { ComuneDettaglio } from 'src/app/models/comune-dettaglio';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { StagingService } from 'src/app/services/staging.service';
 
 
 @Component({
@@ -16,18 +16,18 @@ export class ComuneComponent implements OnInit {
   comune: ComuneDettaglio;
   id: number;
   constructor(
-    private dataService: DataService,
     private chiamateService: ChiamateService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private stagingService: StagingService) {
 
   }
 
   ngOnInit() {
 
     // Check Admin or Guest
-    if (this.dataService.loggedUser) {
-      this.allowEdit = true ? this.dataService.loggedUser.ruolo.tipo == 'admin' : false;
+    if (this.stagingService.loggedUser) {
+      this.allowEdit = true ? this.stagingService.loggedUser.ruolo.tipo == 'admin' : false;
     }
 
     this.id = +this.route.snapshot.params['id'];
@@ -53,6 +53,11 @@ export class ComuneComponent implements OnInit {
         // console.log('Comune Modificato: ', data);
         this.router.navigate(['/comuni']);
       });
+  }
+
+  onDeleteRow(array: [], i: number) {
+    array.splice(i, 1);
+    console.log('onDeleteRow: ', array);
   }
 
 }

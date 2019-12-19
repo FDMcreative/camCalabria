@@ -18,7 +18,7 @@
             <p class="sectionTitle">Sezione Asili:</p>
             <div class="sectionBody asiliSection">
 
-                <div *ngFor="let asilo of comune?.asiliNido; let i = index">
+                <div class="formRow" *ngFor="let asilo of comune?.asiliNido; let i = index">
 
                     <span>{{i+1}})</span>
 
@@ -37,7 +37,8 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit" matInput type="text" placeholder="Telefono dell'asilo" ngModel
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input [readonly]="!allowEdit" matInput type="tel" placeholder="Telefono dell'asilo" ngModel
                             #asiloTelefono_{{i+1}}="ngModel" name="{{ 'asiloTelefono_' + (i+1) }}"
                             id="{{ 'asiloTelefono_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].telefono"
                             autocomplete="off" required>
@@ -50,13 +51,16 @@
                             autocomplete="off" required>
                     </mat-form-field>
 
+                    <button *ngIf="allowEdit" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.asiliNido, i)">Elimina</button>
+
                 </div>
             </div>
 
             <p class="sectionTitle">Sezione Residenze Anziani:</p>
             <div class="sectionBody residenzeAnzianiSection">
 
-                <div *ngFor="let residenzaAnziani of comune?.residenzeAnziani; let i = index">
+                <div class="formRow" *ngFor="let residenzaAnziani of comune?.residenzeAnziani; let i = index">
 
                     <span>{{i+1}})</span>
 
@@ -77,7 +81,8 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit" matInput type="text"
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input [readonly]="!allowEdit" matInput type="tel"
                             placeholder="Telefono della residenza anziani" ngModel
                             #residenzaAnzianiTelefono_{{i+1}}="ngModel" name="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
                             id="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
@@ -93,13 +98,17 @@
                             [(ngModel)]="comune?.residenzeAnziani[i].numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
+                    <button *ngIf="allowEdit" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.residenzeAnziani, i)">Elimina</button>
+
+
                 </div>
             </div>
 
             <p class="sectionTitle">Sezione Residenze Disabili:</p>
             <div class="sectionBody residenzeDisabiliSection">
 
-                <div *ngFor="let asilo of comune?.residenzeDisabili; let i = index">
+                <div class="formRow" *ngFor="let asilo of comune?.residenzeDisabili; let i = index">
 
                     <span>{{i+1}})</span>
 
@@ -120,7 +129,8 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit" matInput type="text"
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input [readonly]="!allowEdit" matInput type="tel"
                             placeholder="Telefono della residenza disabili" ngModel
                             #residenzaDisabiliTelefono_{{i+1}}="ngModel"
                             name="{{ 'residenzaDisabiliTelefono_' + (i+1) }}"
@@ -136,6 +146,9 @@
                             id="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
                             [(ngModel)]="comune?.residenzeDisabili[i].numeroStanze" autocomplete="off" required>
                     </mat-form-field>
+
+                    <button *ngIf="allowEdit" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.residenzeDisabili, i)">Elimina</button>
 
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnChanges } from '@angular/core';
 import { ChiamateService } from 'src/app/services/chiamate.service';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -40,7 +39,9 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-  constructor(private chiamateService: ChiamateService) { }
+  constructor(private chiamateService: ChiamateService) {
+    this.cityAppoggio = new FormControl(null, [Validators.required]);
+  }
 
 
 
@@ -50,7 +51,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.cityAppoggio = new FormControl(null, [Validators.required]);
+
     this.getComuni();
   }
 
@@ -80,6 +81,11 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allCitiesArray.filter(option => option.toLowerCase().includes(filterValue));
+    // return this.allCitiesArray.filter(option => {
+    //   if (option) {
+    //     option.toLowerCase().includes(filterValue)
+    //   }
+    // });
   }
 
   // Get All Comuni
@@ -87,11 +93,10 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
     this.chiamateService.getAllComuni()
       .subscribe((data: ComuneLista[]) => {
         this.allCities = data;
-        console.log('this.allCities: ', this.allCities);
+        // console.log('this.allCities: ', this.allCities);
         // Transform To Array of Strings
-        this.allCitiesArray = this.allCities.map((city: ComuneLista) => {
-          return city.nome.replace(city.nome[0], city.nome[0].toUpperCase());
-        });
+        // this.allCitiesArray = this.allCities.map((city: ComuneLista) => city.nome.replace(city.nome[0], city.nome[0].toUpperCase()));
+        this.allCitiesArray = this.allCities.map((city: ComuneLista) => city.nome);
         console.log('this.allCitiesArray: ', this.allCitiesArray);
         // Populate the Autocomplete
         this.autocompleteFunction();

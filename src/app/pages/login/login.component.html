@@ -7,14 +7,21 @@
 
     <!-- USERNAME -->
     <mat-form-field class="">
-        <input matInput type="text" placeholder="Username/Regione" ngModel #username="ngModel" name="username"
-            id="username" (ngModel)="login.username" autocomplete="off" required>
+        <input matInput type="text" placeholder="Username" ngModel #username="ngModel" name="username" id="username"
+            (ngModel)="login.username" autocomplete="off" required>
+        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+        <mat-error *ngIf="username.hasError('required')">
+            Lo username è <strong>richiesto</strong>
+        </mat-error>
     </mat-form-field>
 
     <!-- PASSWORD -->
     <mat-form-field class="">
         <input matInput type="password" placeholder="Password" ngModel #password="ngModel" name="password" id="password"
             (ngModel)="login.password" autocomplete="off" required>
+        <mat-error *ngIf="password.hasError('required')">
+            La password è <strong>richiesta</strong>
+        </mat-error>
     </mat-form-field>
 
     <!-- SUBMIT -->

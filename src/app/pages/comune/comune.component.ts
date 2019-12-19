@@ -45,7 +45,7 @@ export class ComuneComponent implements OnInit {
       );
   }
 
-  onSubmit() {
+  onSubmit(f) {
     console.log('COMUNE: ', this.comune);
 
     this.chiamateService.modifyComune(this.comune, this.id)

@@ -14,7 +14,8 @@ export class DataService {
 
 
     static router: Router;
-    private baseUrl: string = 'http://172.16.8.155:8080';
+    // private baseUrl: string = 'http://172.16.8.155:8080';
+    private baseUrl: string = 'http://172.16.8.155:8181/sorveglianzacalabria';
 
 
     constructor(private httpClient: HttpClient) {

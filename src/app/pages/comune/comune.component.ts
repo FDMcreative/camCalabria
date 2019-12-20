@@ -31,11 +31,11 @@ export class ComuneComponent implements OnInit {
     }
 
     this.id = +this.route.snapshot.params['id'];
+
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
-
           this.chiamateService.getComuneById(this.id)
             .subscribe((data: ComuneDettaglio) => {
               // console.log('data: ', data);

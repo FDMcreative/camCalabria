@@ -37,8 +37,6 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   cercaAppoggio: string;
   filteredCitiesOptions: Observable<string[]>;
 
-  options: string[] = ['One', 'Two', 'Three'];
-
 
   constructor(private chiamateService: ChiamateService) {
     this.cityAppoggio = new FormControl(null, [Validators.required]);
@@ -81,12 +79,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    // return this.allCitiesArray.filter(option => {
-    //   if (option) {
-    //     option.toLowerCase().includes(filterValue)
-    //   }
-    // });
+    return this.allCitiesArray.filter(option => option && option.toLowerCase().includes(filterValue));
   }
 
   // Get All Comuni
@@ -125,9 +118,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   // Add a City
   onAddCity() {
     // console.log('this.cityAppoggio.value: ', this.cityAppoggio.value);
-    let result = this.allCities.filter(obj => {
-      return obj.nome === this.cityAppoggio.value;
-    });
+    let result = this.allCities.filter(obj => obj && obj.nome === this.cityAppoggio.value);
     // this.citiesTable = this.arrayUnique(this.citiesTable.concat(result));
     this.citiesTable = this.arrayUnique(result.concat(this.citiesTable));
     // console.log('AFTER citiesTable: ', this.citiesTable);
@@ -155,10 +146,8 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
     this.selectedProvincia = provincia;
     // console.log('PROVINCIA: ', provincia);
     this.removeAllCities();
-    this.citiesTable = this.allCities.filter((city) => {
-      return city.provincia.toLowerCase() === provincia;
-    });
-    // console.log('this.citiesTable: ', this.citiesTable);
+    this.citiesTable = this.allCities.filter(city => city.provincia && city.provincia.toLowerCase() == provincia);
+    console.log('this.citiesTable: ', this.citiesTable);
     this.updateTable();
   }
 

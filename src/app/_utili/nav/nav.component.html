@@ -1,0 +1,72 @@
+<div>
+  <nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top" style="color:rgb(163, 163, 163)">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li>
+
+          <a class="navbar-brand" href="#">
+            <form class="form-inline">
+              <img src="favicon.ico" height="40" alt="">
+              <h5 style="color:white;">Nike Web Consulting</h5>
+            </form>
+          </a>
+
+        </li>
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link" routerLinkActive="active"><i class="fa fa-fw fa-home"></i>Home</a>
+        </li>
+         <li class="nav-item">
+          <a routerLink="/persona" class="nav-link" routerLinkActive="active">Registrazione</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/test" class="nav-link" routerLinkActive="active">Test</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/aggiungiTest" class="nav-link" routerLinkActive="active">Aggiungi Test</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/ricerca" class="nav-link" routerLinkActive="active">Ricerca</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/prova" class="nav-link" routerLinkActive="active">Prova</a>
+        </li>
+        
+<!-- per togliere la visibilita mettere [hidden]="!nascondi" [hidden]="!admin"  -->
+      <!--   <li class="nav-item" [hidden]="nascondi" [hidden]="admin">
+          <a routerLink="/createst" class="nav-link" routerLinkActive="active">creaTest</a>
+        </li>
+        -->
+        <li class="nav-item" [hidden]="nascondi">
+          <a routerLink="/lista" class="nav-link" routerLinkActive="active">ListaCandidati</a>
+        </li>
+        <li class="nav-item" [hidden]="nascondi" [hidden]="admin">
+          <a routerLink="/creaHr" class="nav-link" routerLinkActive="active">CreaHr</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item dropleft" [hidden]="!nascondi">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://icon-library.net/images/my-profile-icon-png/my-profile-icon-png-3.jpg" width="40" height="40" class="rounded-circle">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">impostazioni</a>
+                <a routerLink="/home" class="dropdown-item"(click)="logout()">Logout</a>
+              </div>
+            </li>
+
+
+        <li class="nav-item">
+          <a routerLink="/login" class="nav-link" routerLinkActive="active" [hidden]="nascondi"><i class="fa fa-fw fa-user"></i>
+            AreaProtetta</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

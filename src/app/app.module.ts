@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,11 @@ import { ComuniComponent } from './pages/comuni/comuni.component';
 import { ComuneComponent } from './pages/comune/comune.component';
 import { ErroreComponent } from './pages/errore/errore.component';
 import { MappaCalabriaComponent } from './components/mappa-calabria/mappa-calabria.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './_utili/guards/auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+
 
 // MATERIAL
 import { MatInputModule } from '@angular/material/input';
@@ -52,7 +57,7 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

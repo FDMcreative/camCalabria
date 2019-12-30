@@ -24,7 +24,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('paginator', { static: true }) paginator: MatPaginator;
   // displayedColumns: string[] = ['select', 'id', 'name', 'file', 'action'];
   citiesTable: ComuneLista[] = [];
-  displayedColumns: string[] = ['nome', 'provincia', 'asiliNido', 'residenzeAnziani', 'residenzeDisabili', 'file', 'action'];
+  displayedColumns: string[] = ['stemma', 'nome', 'provincia', 'asiliNido', 'residenzeAnziani', 'residenzeDisabili', 'file', 'action'];
   dataSource = new MatTableDataSource<ComuneLista>(this.citiesTable);
   // ---------------------- TABLE END
 

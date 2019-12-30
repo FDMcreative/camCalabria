@@ -66,10 +66,23 @@
                 padding-right: 15px;
             }
 
+            #stemmaTh {
+                width: 50px;
+            }
+
             td {
                 // border: solid 1px #000;
                 padding-left: 15px;
                 padding-right: 15px;
+
+                span {
+                    display: inline-block;
+                }
+
+                img {
+                    display: inline-block;
+                    max-height: 30px;
+                }
 
                 .fileUpload {
                     cursor: pointer;

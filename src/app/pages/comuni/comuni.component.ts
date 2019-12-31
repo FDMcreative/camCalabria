@@ -7,6 +7,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ComuneLista } from 'src/app/models/comune-lista';
+import { StagingService } from 'src/app/services/staging.service';
 
 //  * @title Table with selection
 @Component({
@@ -29,7 +30,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   // ---------------------- TABLE END
 
 
-
+  allowEdit: boolean;
   selectedProvincia: string;
   allCities: ComuneLista[] = [];
   allCitiesArray: string[] = [];
@@ -38,7 +39,9 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   filteredCitiesOptions: Observable<string[]>;
 
 
-  constructor(private chiamateService: ChiamateService) {
+  constructor(
+    private chiamateService: ChiamateService,
+    private stagingService: StagingService) {
     this.cityAppoggio = new FormControl(null, [Validators.required]);
   }
 
@@ -48,6 +51,12 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
 
   // ngOnInit
   ngOnInit() {
+
+    // Check Admin or Guest
+    if (this.stagingService.loggedUser) {
+      this.allowEdit = true ? this.stagingService.loggedUser.ruolo.tipo == 'admin' : false;
+    }
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
 

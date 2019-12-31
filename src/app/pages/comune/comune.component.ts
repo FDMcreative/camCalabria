@@ -14,7 +14,7 @@ export class ComuneComponent implements OnInit {
 
   allowEdit: boolean;
   comune: ComuneDettaglio;
-  id: number;
+  idComune: number;
   constructor(
     private chiamateService: ChiamateService,
     private route: ActivatedRoute,
@@ -30,13 +30,13 @@ export class ComuneComponent implements OnInit {
       this.allowEdit = true ? this.stagingService.loggedUser.ruolo.tipo == 'admin' : false;
     }
 
-    this.id = +this.route.snapshot.params['id'];
+    this.idComune = +this.route.snapshot.params['id'];
 
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = params['id'];
-          this.chiamateService.getComuneById(this.id)
+          this.idComune = params['id'];
+          this.chiamateService.getComuneById(this.idComune)
             .subscribe((data: ComuneDettaglio) => {
               // console.log('data: ', data);
               this.comune = data;
@@ -48,7 +48,7 @@ export class ComuneComponent implements OnInit {
   onSubmit(f) {
     console.log('COMUNE: ', this.comune);
 
-    this.chiamateService.modifyComune(this.comune, this.id)
+    this.chiamateService.modifyComune(this.comune, this.idComune)
       .subscribe((data) => {
         // console.log('Comune Modificato: ', data);
         this.router.navigate(['/comuni']);

@@ -21,7 +21,9 @@
         </div>
 
         <div class="whiteRow">
-            <button mat-raised-button color="accent" (click)="addAllCities()">Aggiungi tutti i comuni</button>
+            <button [disabled]="allCities.length == 0" mat-raised-button color="accent"
+                (click)="addAllCities()">Aggiungi
+                tutti i comuni</button>
             <hr>
             <button mat-raised-button (click)="removeAllCities()">Rimuovi tutti i comuni</button>
         </div>
@@ -129,9 +131,9 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>AZIONI</th>
             <td mat-cell *matCellDef="let element">
-                <i class="material-icons" *ngIf="!allowEdit && element.idComune != stagingService.loggedUser.idComune"
+                <i class="material-icons" *ngIf="!allowEdit && element.idComune != stagingService.loggedUser?.idComune"
                     [routerLink]="['/comuni', element.idComune]">visibility</i>
-                <i class="material-icons" *ngIf="allowEdit || element.idComune == stagingService.loggedUser.idComune"
+                <i class="material-icons" *ngIf="allowEdit || element.idComune == stagingService.loggedUser?.idComune"
                     [routerLink]="['/comuni', element.idComune]">edit</i>
                 <!-- <i [ngStyle]="{'cursor': element.action === 'chevron_right' ? 'pointer' : 'default'}"
                     class="material-icons" [routerLink]="element.action === 'chevron_right' ? ['/errore'] : []">

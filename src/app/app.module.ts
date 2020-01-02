@@ -6,16 +6,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './pages/login/login.component';
-import { ComuniComponent } from './pages/comuni/comuni.component';
-import { ComuneComponent } from './pages/comune/comune.component';
-import { ErroreComponent } from './pages/errore/errore.component';
-import { MappaCalabriaComponent } from './components/mappa-calabria/mappa-calabria.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './_utili/guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-
 
 // MATERIAL
 import { MatInputModule } from '@angular/material/input';
@@ -27,8 +21,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
-
+// COMPONENTS
+import { LoginComponent } from './pages/login/login.component';
+import { ComuniComponent } from './pages/comuni/comuni.component';
+import { ComuneComponent } from './pages/comune/comune.component';
+import { ErroreComponent } from './pages/errore/errore.component';
+import { MappaCalabriaComponent } from './components/mappa-calabria/mappa-calabria.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MatCardModule } from '@angular/material/card';
     ErroreComponent,
     MappaCalabriaComponent,
     ComuneComponent,
+    HeaderComponent,
   ],
   imports: [
     HttpClientModule,
@@ -55,7 +57,8 @@ import { MatCardModule } from '@angular/material/card';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [AuthService, AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]

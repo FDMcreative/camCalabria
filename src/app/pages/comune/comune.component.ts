@@ -3,6 +3,7 @@ import { ChiamateService } from 'src/app/services/chiamate.service';
 import { ComuneDettaglio } from 'src/app/models/comune-dettaglio';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { StagingService } from 'src/app/services/staging.service';
+import { LoggedUser } from 'src/app/models/loggedUser';
 
 
 @Component({
@@ -12,9 +13,11 @@ import { StagingService } from 'src/app/services/staging.service';
 })
 export class ComuneComponent implements OnInit {
 
+  loggedUser: LoggedUser;
   allowEdit: boolean;
   comune: ComuneDettaglio;
   idComune: number;
+
   constructor(
     private chiamateService: ChiamateService,
     private route: ActivatedRoute,
@@ -26,9 +29,8 @@ export class ComuneComponent implements OnInit {
   ngOnInit() {
 
     // Check Admin or Guest
-    if (this.stagingService.loggedUser) {
-      this.allowEdit = true ? this.stagingService.loggedUser.ruolo.tipo == 'admin' : false;
-    }
+    this.loggedUser = this.stagingService.loadLoggedUser();
+    this.allowEdit = true ? this.loggedUser.ruolo.tipo == 'admin' : false;
 
     this.idComune = +this.route.snapshot.params['id'];
 

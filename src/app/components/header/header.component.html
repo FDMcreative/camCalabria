@@ -1,0 +1,17 @@
+<mat-toolbar>
+
+    <span style="cursor: pointer;" routerLink="/comuni">Camera Application</span>
+
+    <span class="spacer"></span>
+
+    <span *ngIf="loggedUser">Benvenuto {{loggedUser.username}}</span>
+
+    <mat-icon mat-button [matMenuTriggerFor]="user" style="cursor: pointer;" class="icon" aria-hidden="false"
+        aria-label="user verified icon">person</mat-icon>
+
+    <mat-menu #user="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+
+</mat-toolbar>

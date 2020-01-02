@@ -106,9 +106,12 @@ export class CrudServiceOptions {
     loggedUser: LoggedUser;
 
     constructor(private stagingService: StagingService) {
-        this.loggedUser = this.stagingService.loggedUser;
+        this.loggedUser = this.stagingService.loadLoggedUser();
     }
 
+    loadLoggedUser() {
+        this.loggedUser = this.stagingService.loadLoggedUser();
+    }
 
     /**
      * costruisce gli header params necessari per le chiamate

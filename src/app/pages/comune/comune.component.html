@@ -23,37 +23,36 @@
                     <span>{{i+1}})</span>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Nome dell'asilo" ngModel #asiloNome_{{i+1}}="ngModel"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Nome dell'asilo" ngModel #asiloNome_{{i+1}}="ngModel"
                             name="{{ 'asiloNome_' + (i+1) }}" id="{{ 'asiloNome_' + (i+1) }}"
                             [(ngModel)]="comune?.asiliNido[i].nome" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Indirizzo dell'asilo" ngModel #asiloIndirizzo_{{i+1}}="ngModel"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Indirizzo dell'asilo" ngModel #asiloIndirizzo_{{i+1}}="ngModel"
                             name="{{ 'asiloIndirizzo_' + (i+1) }}" id="{{ 'asiloIndirizzo_' + (i+1) }}"
                             [(ngModel)]="comune?.asiliNido[i].indirizzo" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
                         <span matPrefix>+39 &nbsp;</span>
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="tel" placeholder="Telefono dell'asilo" ngModel #asiloTelefono_{{i+1}}="ngModel"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="tel"
+                            placeholder="Telefono dell'asilo" ngModel #asiloTelefono_{{i+1}}="ngModel"
                             name="{{ 'asiloTelefono_' + (i+1) }}" id="{{ 'asiloTelefono_' + (i+1) }}"
                             [(ngModel)]="comune?.asiliNido[i].telefono" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Numero stanze dell'asilo" ngModel
-                            #asiloNumeroStanze_{{i+1}}="ngModel" name="{{ 'asiloNumeroStanze_' + (i+1) }}"
-                            id="{{ 'asiloNumeroStanze_' + (i+1) }}" [(ngModel)]="comune?.asiliNido[i].numeroStanze"
-                            autocomplete="off" required>
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Numero stanze dell'asilo" ngModel #asiloNumeroStanze_{{i+1}}="ngModel"
+                            name="{{ 'asiloNumeroStanze_' + (i+1) }}" id="{{ 'asiloNumeroStanze_' + (i+1) }}"
+                            [(ngModel)]="comune?.asiliNido[i].numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
-                    <button *ngIf="allowEdit || idComune == stagingService.loggedUser?.idComune" mat-raised-button
-                        color="warn" (click)="onDeleteRow(comune.asiliNido, i)">Elimina</button>
+                    <button *ngIf="allowEdit || idComune == loggedUser.idComune" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.asiliNido, i)">Elimina</button>
 
                 </div>
             </div>
@@ -66,16 +65,15 @@
                     <span>{{i+1}})</span>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Nome della residenza anziani" ngModel
-                            #residenzaAnzianiNome_{{i+1}}="ngModel" name="{{ 'residenzaAnzianiNome_' + (i+1) }}"
-                            id="{{ 'residenzaAnzianiNome_' + (i+1) }}" [(ngModel)]="comune?.residenzeAnziani[i].nome"
-                            autocomplete="off" required>
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Nome della residenza anziani" ngModel #residenzaAnzianiNome_{{i+1}}="ngModel"
+                            name="{{ 'residenzaAnzianiNome_' + (i+1) }}" id="{{ 'residenzaAnzianiNome_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeAnziani[i].nome" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Indirizzo della residenza anziani" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Indirizzo della residenza anziani" ngModel
                             #residenzaAnzianiIndirizzo_{{i+1}}="ngModel"
                             name="{{ 'residenzaAnzianiIndirizzo_' + (i+1) }}"
                             id="{{ 'residenzaAnzianiIndirizzo_' + (i+1) }}"
@@ -84,24 +82,24 @@
 
                     <mat-form-field class="">
                         <span matPrefix>+39 &nbsp;</span>
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="tel" placeholder="Telefono della residenza anziani" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="tel"
+                            placeholder="Telefono della residenza anziani" ngModel
                             #residenzaAnzianiTelefono_{{i+1}}="ngModel" name="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
                             id="{{ 'residenzaAnzianiTelefono_' + (i+1) }}"
                             [(ngModel)]="comune?.residenzeAnziani[i].telefono" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Numero stanze della residenza anziani" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Numero stanze della residenza anziani" ngModel
                             #residenzaAnzianiNumeroStanze_{{i+1}}="ngModel"
                             name="{{ 'residenzaAnzianiNumeroStanze_' + (i+1) }}"
                             id="{{ 'residenzaAnzianiNumeroStanze_' + (i+1) }}"
                             [(ngModel)]="comune?.residenzeAnziani[i].numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
-                    <button *ngIf="allowEdit || idComune == stagingService.loggedUser?.idComune" mat-raised-button
-                        color="warn" (click)="onDeleteRow(comune.residenzeAnziani, i)">Elimina</button>
+                    <button *ngIf="allowEdit || idComune == loggedUser.idComune" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.residenzeAnziani, i)">Elimina</button>
 
 
                 </div>
@@ -115,16 +113,15 @@
                     <span>{{i+1}})</span>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Nome della residenza disabili" ngModel
-                            #residenzaDisabiliNome_{{i+1}}="ngModel" name="{{ 'residenzaDisabiliNome_' + (i+1) }}"
-                            id="{{ 'residenzaDisabiliNome_' + (i+1) }}" [(ngModel)]="comune?.residenzeDisabili[i].nome"
-                            autocomplete="off" required>
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Nome della residenza disabili" ngModel #residenzaDisabiliNome_{{i+1}}="ngModel"
+                            name="{{ 'residenzaDisabiliNome_' + (i+1) }}" id="{{ 'residenzaDisabiliNome_' + (i+1) }}"
+                            [(ngModel)]="comune?.residenzeDisabili[i].nome" autocomplete="off" required>
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Indirizzo della residenza disabili" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Indirizzo della residenza disabili" ngModel
                             #residenzaDisabiliIndirizzo_{{i+1}}="ngModel"
                             name="{{ 'residenzaDisabiliIndirizzo_' + (i+1) }}"
                             id="{{ 'residenzaDisabiliIndirizzo_' + (i+1) }}"
@@ -133,8 +130,8 @@
 
                     <mat-form-field class="">
                         <span matPrefix>+39 &nbsp;</span>
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="tel" placeholder="Telefono della residenza disabili" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="tel"
+                            placeholder="Telefono della residenza disabili" ngModel
                             #residenzaDisabiliTelefono_{{i+1}}="ngModel"
                             name="{{ 'residenzaDisabiliTelefono_' + (i+1) }}"
                             id="{{ 'residenzaDisabiliTelefono_' + (i+1) }}"
@@ -142,16 +139,16 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != stagingService.loggedUser?.idComune" matInput
-                            type="text" placeholder="Numero stanze della residenza disabili" ngModel
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                            placeholder="Numero stanze della residenza disabili" ngModel
                             #residenzaDisabiliNumeroStanze_{{i+1}}="ngModel"
                             name="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
                             id="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
                             [(ngModel)]="comune?.residenzeDisabili[i].numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
-                    <button *ngIf="allowEdit || idComune == stagingService.loggedUser?.idComune" mat-raised-button
-                        color="warn" (click)="onDeleteRow(comune.residenzeDisabili, i)">Elimina</button>
+                    <button *ngIf="allowEdit || idComune == loggedUser.idComune" mat-raised-button color="warn"
+                        (click)="onDeleteRow(comune.residenzeDisabili, i)">Elimina</button>
 
                 </div>
             </div>
@@ -163,7 +160,7 @@
     <mat-card-actions>
         <button mat-button mat-raised-button color="primary" routerLink="/comuni">Torna indietro</button>
         <button mat-button mat-raised-button color="accent" (click)="onSubmit()"
-            *ngIf="allowEdit || idComune == stagingService.loggedUser?.idComune">Salva</button>
+            *ngIf="allowEdit || idComune == loggedUser.idComune">Salva</button>
         <!-- [routerLink]="['/comuni', id]" -->
     </mat-card-actions>
 

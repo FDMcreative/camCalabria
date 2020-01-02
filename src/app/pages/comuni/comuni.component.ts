@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ComuneLista } from 'src/app/models/comune-lista';
 import { StagingService } from 'src/app/services/staging.service';
+import { LoggedUser } from 'src/app/models/loggedUser';
 
 //  * @title Table with selection
 @Component({
@@ -30,6 +31,7 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   // ---------------------- TABLE END
 
 
+  loggedUser: LoggedUser;
   allowEdit: boolean;
   selectedProvincia: string;
   allCities: ComuneLista[] = [];
@@ -53,9 +55,9 @@ export class ComuniComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
 
     // Check Admin or Guest
-    if (this.stagingService.loggedUser) {
-      this.allowEdit = true ? this.stagingService.loggedUser.ruolo.tipo == 'admin' : false;
-    }
+    this.loggedUser = this.stagingService.loadLoggedUser();
+    this.allowEdit = true ? this.loggedUser.ruolo.tipo == 'admin' : false;
+
 
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

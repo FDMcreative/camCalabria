@@ -1,16 +1,3 @@
-<mat-toolbar>
-
-  <span style="cursor: pointer;" routerLink="/comuni">Camera Application</span>
-
-  <span class="spacer"></span>
-
-  <span *ngIf="stagingService.loggedUser">Benvenuto {{stagingService.loggedUser.username}}</span>
-  <!-- <button> -->
-  <mat-icon style="cursor: pointer;" class="icon" aria-hidden="false" aria-label="user verified icon"
-    routerLink="/login">person</mat-icon>
-  <!-- </button> -->
-
-</mat-toolbar>
-
+<app-header></app-header>
 
 <router-outlet></router-outlet>

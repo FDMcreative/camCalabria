@@ -55,6 +55,45 @@
                         (click)="onDeleteRow(comune.asiliNido, i)">Elimina</button>
 
                 </div>
+
+                <!-- ADDING ROW -->
+                <div class="formRow">
+
+                    <span>aggiungi</span>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Nome dell'asilo" ngModel name="asiloNidoAppoggioNome"
+                            id="asiloNidoAppoggioNome" [(ngModel)]="asiloNidoAppoggio.nome" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Indirizzo dell'asilo" ngModel
+                            name="asiloNidoAppoggioIndirizzo" id="asiloNidoAppoggioIndirizzo"
+                            [(ngModel)]="asiloNidoAppoggio.indirizzo" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input matInput type="tel" placeholder="Telefono dell'asilo" ngModel
+                            name="asiloNidoAppoggioTelefono" id="asiloNidoAppoggioTelefono"
+                            [(ngModel)]="asiloNidoAppoggio.telefono" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Numero stanze dell'asilo" ngModel
+                            name="asiloNidoAppoggioNumeroStanze" id="asiloNidoAppoggioNumeroStanze"
+                            [(ngModel)]="asiloNidoAppoggio.numeroStanze" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <button type="button" mat-raised-button color="primary" (click)="onAddAsiloNido()" [disabled]="
+                            asiloNidoAppoggio.nome == null && 
+                            asiloNidoAppoggio.indirizzo == null && 
+                            asiloNidoAppoggio.telefono == null && 
+                            asiloNidoAppoggio.numeroStanze == null">
+                        Aggiungi</button>
+
+                </div>
+
             </div>
 
             <p class="sectionTitle">Sezione Residenze Anziani:</p>
@@ -101,8 +140,48 @@
                     <button *ngIf="allowEdit || idComune == loggedUser.idComune" mat-raised-button color="warn"
                         (click)="onDeleteRow(comune.residenzeAnziani, i)">Elimina</button>
 
+                </div>
+
+                <!-- ADDING ROW -->
+                <div class="formRow">
+
+                    <span>aggiungi</span>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Nome della residenza anziani" ngModel
+                            name="residenzaAnzianiAppoggioNome" id="residenzaAnzianiAppoggioNome"
+                            [(ngModel)]="residenzaAnzianiAppoggio.nome" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Indirizzo della residenza anziani" ngModel
+                            name="residenzaAnzianiAppoggioIndirizzo" id="residenzaAnzianiAppoggioIndirizzo"
+                            [(ngModel)]="residenzaAnzianiAppoggio.indirizzo" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input matInput type="tel" placeholder="Telefono della residenza anziani" ngModel
+                            name="residenzaAnzianiAppoggioTelefono" id="residenzaAnzianiAppoggioTelefono"
+                            [(ngModel)]="residenzaAnzianiAppoggio.telefono" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Numero stanze della residenza anziani" ngModel
+                            name="residenzaAnzianiAppoggioNumeroStanze" id="residenzaAnzianiAppoggioNumeroStanze"
+                            [(ngModel)]="residenzaAnzianiAppoggio.numeroStanze" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaAnziani()"
+                        [disabled]="
+                        residenzaAnzianiAppoggio.nome == null && 
+                        residenzaAnzianiAppoggio.indirizzo == null && 
+                        residenzaAnzianiAppoggio.telefono == null && 
+                        residenzaAnzianiAppoggio.numeroStanze == null">
+                        Aggiungi</button>
 
                 </div>
+
             </div>
 
             <p class="sectionTitle">Sezione Residenze Disabili:</p>
@@ -151,6 +230,47 @@
                         (click)="onDeleteRow(comune.residenzeDisabili, i)">Elimina</button>
 
                 </div>
+
+                <!-- ADDING ROW -->
+                <div class="formRow">
+
+                    <span>aggiungi</span>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Nome della residenza disabili" ngModel
+                            name="residenzaDisabiliAppoggioNome" id="residenzaDisabiliAppoggioNome"
+                            [(ngModel)]="residenzaDisabiliAppoggio.nome" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Indirizzo della residenza disabili" ngModel
+                            name="residenzaDisabiliAppoggioIndirizzo" id="residenzaDisabiliAppoggioIndirizzo"
+                            [(ngModel)]="residenzaDisabiliAppoggio.indirizzo" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <span matPrefix>+39 &nbsp;</span>
+                        <input matInput type="tel" placeholder="Telefono della residenza disabili" ngModel
+                            name="residenzaDisabiliAppoggioTelefono" id="residenzaDisabiliAppoggioTelefono"
+                            [(ngModel)]="residenzaDisabiliAppoggio.telefono" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="">
+                        <input matInput type="text" placeholder="Numero stanze della residenza disabili" ngModel
+                            name="residenzaDisabiliAppoggioNumeroStanze" id="residenzaDisabiliAppoggioNumeroStanze"
+                            [(ngModel)]="residenzaDisabiliAppoggio.numeroStanze" autocomplete="off" required>
+                    </mat-form-field>
+
+                    <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaDisabili()"
+                        [disabled]="
+                        residenzaDisabiliAppoggio.nome == null && 
+                        residenzaDisabiliAppoggio.indirizzo == null && 
+                        residenzaDisabiliAppoggio.telefono == null && 
+                        residenzaDisabiliAppoggio.numeroStanze == null">
+                        Aggiungi</button>
+
+                </div>
+
             </div>
 
         </form>
@@ -159,7 +279,7 @@
 
     <mat-card-actions>
         <button mat-button mat-raised-button color="primary" routerLink="/comuni">Torna indietro</button>
-        <button mat-button mat-raised-button color="accent" (click)="onSubmit()"
+        <button mat-button mat-raised-button color="accent" type="submit" (click)="onSubmit()"
             *ngIf="allowEdit || idComune == loggedUser.idComune">Salva</button>
         <!-- [routerLink]="['/comuni', id]" -->
     </mat-card-actions>

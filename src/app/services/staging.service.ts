@@ -7,49 +7,41 @@ import { ComuneLista } from '../models/comune-lista';
 })
 export class StagingService {
 
-
     @Output() userChanged = new EventEmitter();
 
-    sendData(arg: any) {
-        this.userChanged.emit(arg);
-    }
-
-
-
-    // ---------- VARIABILI APPOGGIO
+    // --- VARIABILI APPOGGIO
     private loggedUser;
     public selectedComune: ComuneLista;
-    // ---------- VARIABILI APPOGGIO END
+    // --- VARIABILI APPOGGIO END
 
 
-    // SAVE IN SESSION STORAGE
-    private storeLoggedUser(user: LoggedUser) {
-        sessionStorage.setItem('loggedUser', JSON.stringify(user));
+    // GENERIC SAVE IN SESSION STORAGE
+    private storeLoggedUser(key: string, user: LoggedUser) {
+        sessionStorage.setItem(key, JSON.stringify(user));
     }
 
-    private retrieveLoggedUser() {
-        let storedLoggedUser: string = sessionStorage.getItem('loggedUser');
+    // GENERIC RETRIEVE FROM SESSION STORAGE
+    private retrieveLoggedUser(key: string) {
+        let storedLoggedUser: string = sessionStorage.getItem(key);
         if (!storedLoggedUser) throw 'no logged user found';
         return storedLoggedUser;
     }
 
-    private removeLoggedUser() {
-        sessionStorage.removeItem('loggedUser');
-    }
+
+    // --- USER METHODS
 
     public saveLoggedUser(user: LoggedUser) {
         this.loggedUser = user;
-        this.storeLoggedUser(this.loggedUser);
+        this.storeLoggedUser('loggedUser', this.loggedUser);
         this.userChanged.emit(user);
     }
 
     public loadLoggedUser() {
         let user: LoggedUser;
         try {
-            let storedLoggedUser = JSON.parse(this.retrieveLoggedUser());
+            let storedLoggedUser = JSON.parse(this.retrieveLoggedUser('loggedUser'));
             user = storedLoggedUser;
             console.log('storedLoggedUser', storedLoggedUser);
-
         }
         catch (err) {
             console.error(err);
@@ -60,6 +52,10 @@ export class StagingService {
     public logoutUser() {
         this.removeLoggedUser();
     }
+    private removeLoggedUser() {
+        sessionStorage.removeItem('loggedUser');
+    }
 
+    // --- USER METHODS END
 
 }

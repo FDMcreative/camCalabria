@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   getUser() {
 
-    this.stagingService.loadLoggedUser();
+    this.loggedUser = this.stagingService.loadLoggedUser();
 
     this.stagingService.userChanged
       .subscribe((user) => {

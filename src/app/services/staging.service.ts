@@ -41,7 +41,7 @@ export class StagingService {
         try {
             let storedLoggedUser = JSON.parse(this.retrieveLoggedUser('loggedUser'));
             user = storedLoggedUser;
-            console.log('storedLoggedUser', storedLoggedUser);
+            // console.log('storedLoggedUser', storedLoggedUser);
         }
         catch (err) {
             console.error(err);

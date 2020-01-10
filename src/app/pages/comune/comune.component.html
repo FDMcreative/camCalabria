@@ -45,7 +45,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="number"
                             placeholder="Numero stanze dell'asilo" ngModel #asiloNumeroStanze_{{i+1}}="ngModel"
                             name="{{ 'asiloNumeroStanze_' + (i+1) }}" id="{{ 'asiloNumeroStanze_' + (i+1) }}"
                             [(ngModel)]="comune?.asiliNido[i].numeroStanze" autocomplete="off" required>
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <div class="addRow formRow">
+                <form #addRowFormAsili="ngForm" class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -80,19 +80,19 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input matInput type="text" placeholder="Numero stanze dell'asilo" ngModel
+                        <input matInput type="number" placeholder="Numero stanze dell'asilo" ngModel
                             name="asiloNidoAppoggioNumeroStanze" id="asiloNidoAppoggioNumeroStanze"
                             [(ngModel)]="asiloNidoAppoggio.numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
                     <button type="button" mat-raised-button color="primary" (click)="onAddAsiloNido()" [disabled]="
-                            asiloNidoAppoggio.nome == null && 
-                            asiloNidoAppoggio.indirizzo == null && 
-                            asiloNidoAppoggio.telefono == null && 
-                            asiloNidoAppoggio.numeroStanze == null">
+                            !asiloNidoAppoggio.nome || 
+                            !asiloNidoAppoggio.indirizzo || 
+                            !asiloNidoAppoggio.telefono || 
+                            !asiloNidoAppoggio.numeroStanze">
                         Aggiungi</button>
 
-                </div>
+                </form>
 
             </div>
 
@@ -129,7 +129,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="number"
                             placeholder="Numero stanze della residenza anziani" ngModel
                             #residenzaAnzianiNumeroStanze_{{i+1}}="ngModel"
                             name="{{ 'residenzaAnzianiNumeroStanze_' + (i+1) }}"
@@ -143,7 +143,7 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <div class="addRow formRow">
+                <form #addRowFormAnziani="ngForm" class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -167,20 +167,20 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input matInput type="text" placeholder="Numero stanze della residenza anziani" ngModel
+                        <input matInput type="number" placeholder="Numero stanze della residenza anziani" ngModel
                             name="residenzaAnzianiAppoggioNumeroStanze" id="residenzaAnzianiAppoggioNumeroStanze"
                             [(ngModel)]="residenzaAnzianiAppoggio.numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
                     <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaAnziani()"
                         [disabled]="
-                        residenzaAnzianiAppoggio.nome == null && 
-                        residenzaAnzianiAppoggio.indirizzo == null && 
-                        residenzaAnzianiAppoggio.telefono == null && 
-                        residenzaAnzianiAppoggio.numeroStanze == null">
+                        !residenzaAnzianiAppoggio.nome || 
+                        !residenzaAnzianiAppoggio.indirizzo || 
+                        !residenzaAnzianiAppoggio.telefono || 
+                        !residenzaAnzianiAppoggio.numeroStanze">
                         Aggiungi</button>
 
-                </div>
+                </form>
 
             </div>
 
@@ -218,7 +218,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="text"
+                        <input [readonly]="!allowEdit && idComune != loggedUser.idComune" matInput type="number"
                             placeholder="Numero stanze della residenza disabili" ngModel
                             #residenzaDisabiliNumeroStanze_{{i+1}}="ngModel"
                             name="{{ 'residenzaDisabiliNumeroStanze_' + (i+1) }}"
@@ -232,7 +232,7 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <div class="addRow formRow">
+                <form #addRowFormDisabili="ngForm" class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -256,20 +256,20 @@
                     </mat-form-field>
 
                     <mat-form-field class="">
-                        <input matInput type="text" placeholder="Numero stanze della residenza disabili" ngModel
+                        <input matInput type="number" placeholder="Numero stanze della residenza disabili" ngModel
                             name="residenzaDisabiliAppoggioNumeroStanze" id="residenzaDisabiliAppoggioNumeroStanze"
                             [(ngModel)]="residenzaDisabiliAppoggio.numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
                     <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaDisabili()"
                         [disabled]="
-                        residenzaDisabiliAppoggio.nome == null && 
-                        residenzaDisabiliAppoggio.indirizzo == null && 
-                        residenzaDisabiliAppoggio.telefono == null && 
-                        residenzaDisabiliAppoggio.numeroStanze == null">
+                        !residenzaDisabiliAppoggio.nome || 
+                        !residenzaDisabiliAppoggio.indirizzo || 
+                        !residenzaDisabiliAppoggio.telefono || 
+                        !residenzaDisabiliAppoggio.numeroStanze">
                         Aggiungi</button>
 
-                </div>
+                </form>
 
             </div>
 

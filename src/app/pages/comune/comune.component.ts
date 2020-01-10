@@ -7,6 +7,7 @@ import { LoggedUser } from 'src/app/models/loggedUser';
 import { ResidenzaDisabili } from 'src/app/models/residenza-disabili';
 import { ResidenzaAnziani } from 'src/app/models/residenza-anziani';
 import { Asilo } from 'src/app/models/asilo';
+import { FormGroup, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,9 @@ import { Asilo } from 'src/app/models/asilo';
 export class ComuneComponent implements OnInit {
 
   @ViewChild('residenzaDisabiliAppoggioNome', { static: true }) residenzaDisabiliAppoggioNome;
+  @ViewChild('addRowFormAsili', { static: true }) addRowFormAsili: NgForm;
+  @ViewChild('addRowFormAnziani', { static: true }) addRowFormAnziani: NgForm;
+  @ViewChild('addRowFormDisabili', { static: true }) addRowFormDisabili: NgForm;
 
   loggedUser: LoggedUser;
   allowEdit: boolean;
@@ -80,14 +84,17 @@ export class ComuneComponent implements OnInit {
   onAddAsiloNido() {
     this.comune.asiliNido.push(this.asiloNidoAppoggio);
     this.asiloNidoAppoggio = new Asilo(null, null, null, null, null);
+    this.addRowFormAsili.reset();
   }
   onAddResidenzaAnziani() {
     this.comune.residenzeAnziani.push(this.residenzaAnzianiAppoggio);
     this.residenzaAnzianiAppoggio = new ResidenzaAnziani(null, null, null, null, null);
+    this.addRowFormAnziani.reset();
   }
   onAddResidenzaDisabili() {
     this.comune.residenzeDisabili.push(this.residenzaDisabiliAppoggio);
     this.residenzaDisabiliAppoggio = new ResidenzaDisabili(null, null, null, null, null);
+    this.addRowFormDisabili.reset();
   }
 
 }

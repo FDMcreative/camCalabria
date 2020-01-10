@@ -7,7 +7,7 @@ import { LoggedUser } from 'src/app/models/loggedUser';
 import { ResidenzaDisabili } from 'src/app/models/residenza-disabili';
 import { ResidenzaAnziani } from 'src/app/models/residenza-anziani';
 import { Asilo } from 'src/app/models/asilo';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -17,10 +17,11 @@ import { FormGroup, NgForm } from '@angular/forms';
 })
 export class ComuneComponent implements OnInit {
 
-  @ViewChild('residenzaDisabiliAppoggioNome', { static: true }) residenzaDisabiliAppoggioNome;
-  @ViewChild('addRowFormAsili', { static: true }) addRowFormAsili: NgForm;
-  @ViewChild('addRowFormAnziani', { static: true }) addRowFormAnziani: NgForm;
-  @ViewChild('addRowFormDisabili', { static: true }) addRowFormDisabili: NgForm;
+  // @ViewChild('residenzaDisabiliAppoggioNome', { static: true }) residenzaDisabiliAppoggioNome;
+
+  @ViewChild('addRowFormAsili', { static: false }) addRowFormAsili: NgForm;
+  @ViewChild('addRowFormAnziani', { static: false }) addRowFormAnziani: NgForm;
+  @ViewChild('addRowFormDisabili', { static: false }) addRowFormDisabili: NgForm;
 
   loggedUser: LoggedUser;
   allowEdit: boolean;
@@ -40,17 +41,7 @@ export class ComuneComponent implements OnInit {
 
   ngOnInit() {
 
-    // Check Admin or Guest
-    this.loggedUser = this.stagingService.loadLoggedUser();
-    this.allowEdit = true ? this.loggedUser.ruolo.tipo == 'admin' : false;
-
-    // Initialize Variabili Appoggio
-    if (this.allowEdit) {
-      this.asiloNidoAppoggio = new Asilo(null, null, null, null, null);
-      this.residenzaAnzianiAppoggio = new ResidenzaAnziani(null, null, null, null, null);
-      this.residenzaDisabiliAppoggio = new ResidenzaDisabili(null, null, null, null, null);
-    }
-
+    // Get idComune
     this.idComune = +this.route.snapshot.params['id'];
 
     this.route.params
@@ -64,6 +55,22 @@ export class ComuneComponent implements OnInit {
             });
         }
       );
+
+    // Check Admin or Guest
+    this.loggedUser = this.stagingService.loadLoggedUser();
+    this.allowEdit = true ? this.loggedUser.ruolo.tipo == 'admin' || this.idComune == this.loggedUser.idComune : false;
+
+    // Initialize Variabili Appoggio
+    if (this.allowEdit) {
+      this.asiloNidoAppoggio = new Asilo(null, null, null, null, null);
+      console.log('asiloNidoAppoggio: ', this.asiloNidoAppoggio);
+
+      this.residenzaAnzianiAppoggio = new ResidenzaAnziani(null, null, null, null, null);
+      this.residenzaDisabiliAppoggio = new ResidenzaDisabili(null, null, null, null, null);
+    }
+  }
+
+  ngAfterViewInit() {
   }
 
   onSubmit(f) {
@@ -82,6 +89,8 @@ export class ComuneComponent implements OnInit {
   }
 
   onAddAsiloNido() {
+    console.log('asiloNidoAppoggio: ', this.asiloNidoAppoggio);
+
     this.comune.asiliNido.push(this.asiloNidoAppoggio);
     this.asiloNidoAppoggio = new Asilo(null, null, null, null, null);
     this.addRowFormAsili.reset();

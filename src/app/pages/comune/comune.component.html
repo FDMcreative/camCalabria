@@ -15,8 +15,9 @@
 
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="">
 
-            <p class="sectionTitle">Sezione Asili:</p>
-            <div class="sectionBody asiliSection">
+            <div *ngIf="comune?.asiliNido.length > 0" class="sectionBody asiliSection">
+
+                <p class="sectionTitle">Sezione Asili:</p>
 
                 <div class="formRow" *ngFor="let asilo of comune?.asiliNido; let i = index">
 
@@ -57,7 +58,8 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <form #addRowFormAsili="ngForm" class="addRow formRow">
+                <form *ngIf="allowEdit || idComune == loggedUser.idComune" #addRowFormAsili="ngForm"
+                    class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -85,19 +87,17 @@
                             [(ngModel)]="asiloNidoAppoggio.numeroStanze" autocomplete="off" required>
                     </mat-form-field>
 
-                    <button type="button" mat-raised-button color="primary" (click)="onAddAsiloNido()" [disabled]="
-                            !asiloNidoAppoggio.nome || 
-                            !asiloNidoAppoggio.indirizzo || 
-                            !asiloNidoAppoggio.telefono || 
-                            !asiloNidoAppoggio.numeroStanze">
+                    <button type="button" mat-raised-button color="primary" (click)="onAddAsiloNido()"
+                        [disabled]="!addRowFormAsili.valid">
                         Aggiungi</button>
 
                 </form>
 
             </div>
 
-            <p class="sectionTitle">Sezione Residenze Anziani:</p>
-            <div class="sectionBody residenzeAnzianiSection">
+            <div *ngIf="comune?.residenzeAnziani.length > 0" class="sectionBody residenzeAnzianiSection">
+
+                <p class="sectionTitle">Sezione Residenze Anziani:</p>
 
                 <div class="formRow" *ngFor="let residenzaAnziani of comune?.residenzeAnziani; let i = index">
 
@@ -143,7 +143,8 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <form #addRowFormAnziani="ngForm" class="addRow formRow">
+                <form *ngIf="allowEdit || idComune == loggedUser.idComune" #addRowFormAnziani="ngForm"
+                    class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -173,19 +174,16 @@
                     </mat-form-field>
 
                     <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaAnziani()"
-                        [disabled]="
-                        !residenzaAnzianiAppoggio.nome || 
-                        !residenzaAnzianiAppoggio.indirizzo || 
-                        !residenzaAnzianiAppoggio.telefono || 
-                        !residenzaAnzianiAppoggio.numeroStanze">
+                        [disabled]="!addRowFormAnziani.valid">
                         Aggiungi</button>
 
                 </form>
 
             </div>
 
-            <p class="sectionTitle">Sezione Residenze Disabili:</p>
-            <div class="sectionBody residenzeDisabiliSection">
+            <div *ngIf="comune?.residenzeDisabili.length > 0" class="sectionBody residenzeDisabiliSection">
+
+                <p class="sectionTitle">Sezione Residenze Disabili:</p>
 
                 <div class="formRow" *ngFor="let asilo of comune?.residenzeDisabili; let i = index">
 
@@ -232,7 +230,8 @@
                 </div>
 
                 <!-- ADDING ROW -->
-                <form #addRowFormDisabili="ngForm" class="addRow formRow">
+                <form *ngIf="allowEdit || idComune == loggedUser.idComune" #addRowFormDisabili="ngForm"
+                    class="addRow formRow">
 
                     <div class="aggiungiDiv">Aggiungi</div>
 
@@ -262,11 +261,7 @@
                     </mat-form-field>
 
                     <button type="button" mat-raised-button color="primary" (click)="onAddResidenzaDisabili()"
-                        [disabled]="
-                        !residenzaDisabiliAppoggio.nome || 
-                        !residenzaDisabiliAppoggio.indirizzo || 
-                        !residenzaDisabiliAppoggio.telefono || 
-                        !residenzaDisabiliAppoggio.numeroStanze">
+                        [disabled]="!addRowFormDisabili.valid">
                         Aggiungi</button>
 
                 </form>

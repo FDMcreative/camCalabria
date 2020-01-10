@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.stagingService.logoutUser();
     this.router.navigate(['/login']);
+    this.getUser();
   }
 
 }
